@@ -5,7 +5,7 @@ import '../style';
 import List from './components/List'; 
 
 // models 
-import { NoteModel, noteComparator } from './models/noteModel'; 
+import { NoteModel, noteComparator, VoteType } from './models/noteModel'; 
 
 interface State {
 	notes: Array<NoteModel>, 
@@ -25,10 +25,14 @@ export default class App extends Component<{}, State> {
 
 		const text = event.target.value; 
 		if (event.keyCode === 13) {
+			const note = new NoteModel(text); 			
+			
 			this.setState(previous => {
-				const note = new NoteModel(text);
 				notes: previous.notes.push(note); 
-			}); 
+			})
+
+		
+			
 			event.target.value = ""; 
 		} else {
 			this.setState({
@@ -37,13 +41,15 @@ export default class App extends Component<{}, State> {
 		}
 	}
 
-	onVote = (id, direction) => {
+	onVote = (id: string, type: VoteType) => {
 
 		const notes = this.state.notes; 
-		const votedUp = direction === "UP"; 
+		const up = type === VoteType.UP; 
+
 		notes.filter(note => note.id === id).forEach(note => {
-			note.score += (votedUp ? 1 : -1); 
+			note.score += (up ? 1 : -1); 
 		})
+
 		notes.sort(noteComparator).reverse(); 
 
 	
