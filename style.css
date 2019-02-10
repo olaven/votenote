@@ -1,0 +1,38 @@
+html, body {
+	font: 14px/1.21 'Helvetica Neue', arial, sans-serif;
+	font-weight: 400;
+	font-size: 1.2em;
+	background-color: black; 
+	color: whitesmoke; 
+}
+
+.input {
+	width: 100vw; 
+	height: 5vh; 
+	font-size: 1.3em; 
+	border: none; 
+	background-color: inherit; 
+	border-bottom: solid whitesmoke; 
+	color: whitesmoke;
+}
+
+.list {
+	display: flex; 
+	flex-flow: column wrap; 
+}
+
+.note {
+	display: flex;
+	flex: 1;
+	margin: 1vw; 
+}
+
+.note-buttons {
+	margin-right: 10vw; 
+	flex-direction: row;
+	align-content: center; 
+}
+
+.note-info {
+	margin-left: 1vw; 
+}
