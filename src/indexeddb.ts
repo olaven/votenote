@@ -33,11 +33,21 @@ export const persistNote = (note: NoteModel) => {
         transaction.onerror = (error) => {
             console.error(error); 
         }
-
-        transaction.oncomplete = (event) => {
-            console.log("completed persisting"); 
-        }
     }); 
+}
+
+export const updateNote = (note: NoteModel) => {
+    getDatabase(database => {
+        const transaction = database.transaction(['notes'], 'readwrite')
+
+        transaction
+            .objectStore('notes')
+            .put(note);
+
+        transaction.onerror = (error) => {
+            console.error(error);
+        }
+    });  
 }
 
 export const retrieveNote = (id: string, callback: (note: NoteModel) => void) => {

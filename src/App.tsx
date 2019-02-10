@@ -6,7 +6,7 @@ import List from './components/List';
 
 // models 
 import { NoteModel, noteComparator, VoteType } from './models/noteModel'; 
-import { persistNote, retrieveNote, retrieveAllNotes } from './indexeddb';
+import { persistNote, retrieveNote, retrieveAllNotes, updateNote } from './indexeddb';
 
 interface State {
 	notes: Array<NoteModel>, 
@@ -40,6 +40,7 @@ export default class App extends Component<{}, State> {
 			this.setState(previous => {
 				notes: previous.notes.push(note); 
 			})
+			
 			persistNote(note); 
 			
 			event.target.value = ""; 
@@ -55,9 +56,13 @@ export default class App extends Component<{}, State> {
 		const notes = this.state.notes; 
 		const up = type === VoteType.UP; 
 
-		notes.filter(note => note.id === id).forEach(note => {
-			note.score += (up ? 1 : -1); 
-		})
+		notes
+			.filter(note => note.id === id)
+			.forEach(note => {
+				note.score += (up ? 1 : -1); 
+				updateNote(note); 
+				console.log(note.score); 
+			})
 
 		notes.sort(noteComparator).reverse(); 
 
