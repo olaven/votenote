@@ -1,5 +1,4 @@
-// import { uuidv1 } from 'uuid/v1';
-const uuid = require('uuid/v1'); 
+import uuid from 'uuid/v1';
 
 export class NoteModel {
     

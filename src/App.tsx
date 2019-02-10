@@ -5,7 +5,7 @@ import '../style';
 import List from './components/List'; 
 
 // models 
-import { NoteModel, noteComparator } from './models/note'; 
+import { NoteModel, noteComparator } from './models/noteModel'; 
 
 interface State {
 	notes: Array<NoteModel>, 
@@ -41,8 +41,9 @@ export default class App extends Component<{}, State> {
 
 		const notes = this.state.notes; 
 		const votedUp = direction === "UP"; 
-		const note = notes.find(note => note.id === id); 
-		note.score += (votedUp ? 1 : -1); 
+		notes.filter(note => note.id === id).forEach(note => {
+			note.score += (votedUp ? 1 : -1); 
+		})
 		notes.sort(noteComparator).reverse(); 
 
 	

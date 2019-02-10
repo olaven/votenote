@@ -11,6 +11,4 @@ import { resolve } from 'path'
  **/
 export default function (config, env, helpers) {
   preactCliTypeScript(config)
-
-  config.resolve.alias['preact-cli-entrypoint'] = resolve(__dirname, 'src', 'index.tsx')
 }

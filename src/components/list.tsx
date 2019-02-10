@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import Note from './note';
-import { NoteModel, VoteType } from '../models/note';
+import { NoteModel, VoteType } from '../models/noteModel';
 
 interface Props {
 	notes: Array<NoteModel>; 
