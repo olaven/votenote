@@ -6,6 +6,7 @@ import List from './components/List';
 
 // models 
 import { NoteModel, noteComparator, VoteType } from './models/noteModel'; 
+import { persistNote, retrieveNote, retrieveAllNotes } from './indexeddb';
 
 interface State {
 	notes: Array<NoteModel>, 
@@ -21,17 +22,25 @@ export default class App extends Component<{}, State> {
 		}
 	}
 
+	componentDidMount() {
+		retrieveAllNotes(notes => {
+			this.setState({
+				notes: notes
+			}); 
+		})
+	}
+
 	onKeyDown = (event) => {
 
 		const text = event.target.value; 
 		if (event.keyCode === 13) {
+			
 			const note = new NoteModel(text); 			
 			
 			this.setState(previous => {
 				notes: previous.notes.push(note); 
 			})
-
-		
+			persistNote(note); 
 			
 			event.target.value = ""; 
 		} else {
