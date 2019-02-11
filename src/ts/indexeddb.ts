@@ -1,4 +1,4 @@
-import { NoteModel } from "./models/noteModel";
+import { NoteModel } from "./note";
 
 const getDatabase = (callback: (database: IDBDatabase) => void) => {
     if (!('indexedDB' in window)) { return null; }

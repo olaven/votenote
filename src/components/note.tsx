@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import { ChevronUp, ChevronDown } from 'preact-feather'
-import { VoteType, NoteModel } from '../models/noteModel';
+import { VoteType, NoteModel } from '../ts/note';
 
 interface NoteProps {
     note: NoteModel, 
